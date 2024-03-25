@@ -7,38 +7,80 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Goods_Management.styles.css" asp-append-version="true" />
+    <style>
+        /* Style for the sidebar menu */
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            background-color: #f8f9fa;
+            padding-top: 50px;
+        }
+            /* Style for the navbar brand */
+            #sidebar .navbar-brand {
+                font-size: 1.2rem; 
+                font-weight: bold;
+                color: #4CAF50; 
+                text-align: center; 
+                width: 100%; 
+                padding: 15px 0; 
+            }
+                /* Style for the line under navbar brand */
+                #sidebar .navbar-brand::after {
+                    content: "";
+                    display: block;
+                    width: 100%;
+                    height: 2px;
+                    background-color: #4CAF50; 
+                    margin-top: 10px; 
+                }
+            /* Style for the navigation links */
+            #sidebar .nav-link {
+                padding: 10px 15px;
+                display: block;
+                color: #333;
+                font-weight: bold; 
+            }
+                /* Hover style for navigation links */
+                #sidebar .nav-link:hover {
+                    background-color: #e9ecef;
+                }
+
+                /* Active style for navigation links */
+                #sidebar .nav-link.active {
+                    background-color: #4CAF50; 
+                    color: #fff; 
+                }
+                    /* Hover style for active navigation links */
+                    #sidebar .nav-link.active:hover {
+                        background-color: #388E3C; 
+                    }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Goods_Management</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
+    <div id="sidebar">
+        <ul class="nav flex-column"> <!-- Sidebar -->
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Goods_Management</a>
+            <li class="nav-item">
+                <a class="nav-link text-dark @(Context.Request.Path == "/" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark @(Context.Request.Path == "/Home/Privacy" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container" style="margin-left: 300px;">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted" style="margin-left: 150px;">
         <div class="container">
-            &copy; 2024 - Goods_Management - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - Goods_Management - by Pacewicz Wiktor - <a href="https://github.com/Zabernik" target="_blank">GitHub</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
